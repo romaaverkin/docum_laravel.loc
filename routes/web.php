@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/user/{id}', function ($id) {
+    return 'User ' . $id;
+});
+
+Route::get('/name/{id?}', function ($id = 'Роман') {
+    return 'Имя ' . $id;
+})->name('profile');
+
+Route::get('/test/{id?}', function ($id = null) {
+    return redirect()->route('profile', ['id' => $id, 'photos' => 'yes']);
+});
