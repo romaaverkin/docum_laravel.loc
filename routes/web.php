@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
-Route::get('/user/{id}', function ($id) {
-    return 'User ' . $id;
-});
+Route::get('user/{id}/{user2_id}', [TestController::class, 'user']);
 
-Route::get('/name/{id?}', function ($id = 'Роман') {
-    return 'Имя ' . $id;
-})->name('profile');
-
-Route::get('/test/{id?}', function ($id = null) {
-    return redirect()->route('profile', ['id' => $id, 'photos' => 'yes']);
-});
+//Route::get('user', [TestController::class, 'index']);
